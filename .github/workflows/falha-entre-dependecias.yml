@@ -21,7 +21,7 @@ jobs:
 
   job2:
     name: segundo fluxo
-    # needs: job1  # criando uma dependencia pra rodar somente após o primeiro job
+    needs: job1  # criando uma dependencia pra rodar somente após o primeiro job
     runs-on: ubuntu-latest
     steps:
       - name: Passo 1 
@@ -33,7 +33,7 @@ jobs:
 
   job3:
     name: terceiro fluxo
-    # needs: job2  # criando uma dependencia pra rodar somente após o segundo job
+    needs: job2  # criando uma dependencia pra rodar somente após o segundo job
     runs-on: ubuntu-latest
     steps:
       - name: Passo 1 
