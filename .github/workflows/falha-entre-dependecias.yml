@@ -1,0 +1,44 @@
+# seção para incluir o nome (rótulo) do fluxo (workflow)
+name: workflow com dependencia de jobs falha
+# para incluir os eventos (gatilhos) de disparo dos passos do workflow
+on:
+  push:
+    branches: [main, master, develop, hotfix]
+  pull_request:
+     branches: [main, master, develop, hotflix]
+# para incluir os fluxos (jobs) de trabalho com as etapas (steps - passos)
+jobs:
+  job1:
+    name: primeiro fluxo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Passo 1 
+        run: echo "Rodando o primeiro passo do deploy."
+      - name: Passo 2
+        run: echo "Rodando o segundo passo do deploy."
+      - name: Passo 3 
+        run: echo "Rodando o terceiro passo do deploy."
+
+  job2:
+    name: segundo fluxo
+    needs: job1  # criando uma dependencia pra rodar somente após o primeiro job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Passo 1 
+        run: echo "Rodando o quarto passo do deploy."
+      - name: Passo 2
+        run: echo "Rodando o quinto passo do deploy."
+      - name: Passo 3 
+        run: echo "Provocando uma falha no script." 
+
+  job3:
+    name: terceiro fluxo
+    needs: job2  # criando uma dependencia pra rodar somente após o segundo job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Passo 1 
+        run: echo "Rodando o sétimo passo do deploy."
+      - name: Passo 2
+        run: echo "Rodando o oitavo passo do deploy."
+      - name: Passo 3 
+        run: echo "Rodando o nono passo do deploy."        
